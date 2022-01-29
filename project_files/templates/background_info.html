@@ -1,0 +1,21 @@
+{% extends "main_template.html" %}
+{% block main_content %}
+  <h1>Information on FASTA files</h1>
+  <p>
+    A FASTA formatted file contain two things: a header and a sequence.<br>
+    The usual file format is 70 characters long, except for the header;
+    headers are identified by starting the line with a ">" (greater-than) symbol and
+    contain information regarding the sequence (which animal it's from, which gene, etc.).<br>
+    Some files can contain multiple sequences and are separated by the headers.<br>
+    The sequence is either a nucleotide sequence or a amino acid sequence. In the example
+    shown below, a nucleotide sequence is used.
+  </p>
+  <img src="../static/images/sample-multi-fasta-file.png" alt="Sample of multi-FASTA">
+  <p>
+    Source:
+    <a href="https://www.researchgate.net/figure/A-sample-of-the-Multi-FASTA-file_fig1_309134977">
+      Hosseini, M.; Pratas, D.; Pinho, A.J. (2016, October).
+      <i>A Survey on Data Compression Methods for Biological Sequences</i> ; ResearchGate
+    </a>
+  </p>
+{% endblock %}

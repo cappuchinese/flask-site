@@ -1,0 +1,12 @@
+{% extends "main_template.html" %}
+{% block main_content %}
+  <h1>Import FASTA file</h1>
+    <p>Choose a FASTA file to read here:</p>
+  <form class="mb-3" action="{{ url_for("handle_form") }}" enctype="multipart/form-data" id="file-importing" method="post">
+    <input class="form-control" type="file" id="formFile" name="filename" required><br>
+    <input class="btn btn-outline-secondary" type="submit">
+  </form>
+  <p id="subtitle">
+    For this FASTA reader, please refer to a nucleotide sequence.
+  </p>
+{% endblock %}

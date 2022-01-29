@@ -1,0 +1,52 @@
+{% extends "main_template.html" %}
+{% block head %}
+  <script>language="JavaScript"; type="text/javascript"
+    function Swap(){
+      var image = document.getElementById("swappingImage");
+      var dropmenu = document.getElementById("frames")
+      image.src = "../static/images/" + dropmenu.value + ".png";
+    }
+  </script>
+{% endblock %}
+
+{% block main_content %}
+  <form action="{{ url_for("show_results") }}" method="post">
+    <p>
+      Which of the following headers (corresponding to its sequence) do you want to use?
+    </p>
+
+    {% for header in headers %}
+      <input class="form-check-input" type="checkbox" id="{{ headers[header]["id"] }}" name="{{ header }}">
+      <label for="{{ headers[header]["id"] }}">{{ header }}</label><br>
+    {% endfor %}
+    <br>
+
+    <label> Choose a reading frame:
+      <select class="form-select" name="reading_frame" id="frames" onchange="Swap()">
+        <option value="frame1">Reading frame 1</option>
+        <option value="frame2">Reading frame 2</option>
+        <option value="frame3">Reading frame 3</option>
+        <option value="frame4">Reading frame 4</option>
+        <option value="frame5">Reading frame 5</option>
+        <option value="frame6">Reading frame 6</option>
+      </select><br>
+      <img id="swappingImage" src="../static/images/frame1.png" alt="Example of reading frame">
+    </label>
+    <br>
+    <p>
+      What data do you want to show?
+    </p>
+    <input type="checkbox" class="form-check-input" id="option1" name="percentage">
+    <label for="option1">Nucleotide percentage</label><br>
+
+    <input type="checkbox" class="form-check-input" id="option2" name="aa_count">
+    <label for="option2">Counter amount amino acids</label><br>
+
+    <input type="checkbox" class="form-check-input" id="option3" name="protein">
+    <label for="option3">Protein sequence</label><br><br>
+
+    <input class="btn btn-outline-secondary" type="submit">
+
+    <input name="filename" value="{{ filename }}" hidden>
+  </form>
+{% endblock %}

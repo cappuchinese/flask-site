@@ -1,0 +1,44 @@
+{% extends "main_template.html" %}
+{% block main_content %}
+  <h4>
+    Click on a header to show its data.
+  </h4>
+  <hr>
+  <div class="accordion" id="accordionExample">
+  {% for header in headers %}
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="{{ "header" + headers[header]["id"] }}">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="{{ "#collapse" + headers[header]["id"] }}" aria-expanded="false" aria-controls="{{ "collapse" + headers[header]["id"] }}">
+         {{ header }}
+        </button>
+      </h2>
+
+      <div id="{{ "collapse" + headers[header]["id"] }}" class="accordion-collapse collapse" aria-labelledby="{{ "header" + headers[header]["id"] }}" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          {% if headers[header]["pie"] %}
+            <div>
+              <p class="display-6">Nucleotide percentage:</p><br>
+              <img src="data:image/png;base64,{{ headers[header]["pie"] }}" alt="pie chart of nucleotide "><br>
+            </div>
+          {% endif %}
+          <hr>
+          {% if headers[header]["bar"] %}
+            <div>
+              <p class="display-6">Counter of amino acids:</p><br>
+              <img src="data:image/png;base64,{{ headers[header]["bar"] }}" alt="bar chart of amino count"><br>
+            </div>
+          {% endif %}
+          <hr>
+          {% if headers[header]["protein"] %}
+            <div>
+              <label class="display-6">Protein sequence<br>
+              </label><br>
+              <textarea rows="20" cols="100" readonly>{{ headers[header]["protein"] }}</textarea>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+{% endblock %}
