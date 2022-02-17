@@ -175,3 +175,7 @@ def show_results():
                 final[header]["id"] = str(count)
 
     return render_template("result_page.html", headers=final)
+
+
+if __name__ == "__main__":
+    app.run()
